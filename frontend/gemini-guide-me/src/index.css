@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Deep purple background like the image */
+    --background: 264 68% 10%; /* rgb(20, 8, 42) - start color */
+    --background-end: 252 65% 8%; /* rgb(8, 6, 32) - end color */
+    --foreground: 0 0% 100%; /* white text for contrast */
+
+    /* Glass card effect */
+    --card: 264 68% 12%; /* slightly lighter than background */
+    --card-foreground: 0 0% 100%; /* white text */
+
+  --popover: 220 12% 92%;
+  --popover-foreground: 220 18% 16%;
+
+    /* Pink coral gradient like the image */
+  --primary: 348 100% 71%; /* #FF6B8B */
+  --primary-foreground: 0 0% 100%; /* white text */
+
+  --secondary: 352 100% 77%; /* #FF8E9E */
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 220 14% 16%;
+    --muted-foreground: 210 10% 70%;
+
+  --accent: 24 95% 55%; /* accent similar to CTA */
+  --accent-foreground: 220 18% 12%;
+
+    --destructive: 0 80% 60%;
+    --destructive-foreground: 210 18% 96%;
+
+    --border: 232 12% 14%;
+    --input: 232 12% 14%;
+    --ring: 28 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Warm gradients */
+  --gradient-primary: linear-gradient(90deg, hsl(28 95% 48%), hsl(15 95% 42%));
+  --gradient-hero: radial-gradient(600px 300px at 18% 70%, rgba(255,130,0,0.08), transparent 8%), radial-gradient(500px 220px at 45% 30%, rgba(255,80,0,0.05), transparent 12%);
+  --gradient-card: linear-gradient(180deg, rgba(240,244,255,0.92), rgba(235,240,255,0.88));
+
+    /* Animated background warm tones */
+  --animated-grad-1: 210 70% 58%; /* light blue, reduced brightness */
+  --animated-grad-2: 265 55% 54%; /* purple, reduced brightness */
+  --animated-grad-3: 195 70% 48%; /* cyan, reduced brightness */
+
+    /* Shadows */
+  --shadow-soft: 0 6px 18px hsl(220 18% 12% / 0.06);
+  --shadow-medium: 0 10px 28px hsl(220 18% 12% / 0.10);
+
+    --transition-smooth: all 0.32s cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 210 18% 96%;
+  --sidebar-primary: 28 100% 50%;
+  --sidebar-primary-foreground: 210 16% 94%;
+    --sidebar-accent: 28 100% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 232 10% 12%;
+    --sidebar-ring: 28 100% 50%;
+  }
+
+  .dark {
+    /* Dark modifier tuned for bluish background (less extreme) */
+    --background: 220 20% 12%;
+    --foreground: 210 18% 96%;
+
+    --card: 220 18% 14%;
+    --card-foreground: 210 18% 96%;
+
+    --popover: 220 18% 14%;
+    --popover-foreground: 210 18% 96%;
+
+    --primary: 28 100% 52%;
+    --primary-foreground: 0 0% 100%;
+
+  --secondary: 40 95% 58%;
+  --secondary-foreground: 220 18% 14%;
+
+  --muted: 220 14% 14%;
+    --muted-foreground: 210 10% 70%;
+
+  --accent: 24 95% 55%;
+  --accent-foreground: 220 18% 12%;
+
+    --destructive: 0 65% 38%;
+    --destructive-foreground: 210 18% 96%;
+
+    --border: 225 12% 10%;
+    --input: 225 12% 10%;
+    --ring: 28 100% 52%;
+
+    --gradient-primary: linear-gradient(90deg, hsl(28 100% 52% / 0.95), hsl(15 100% 45% / 0.95));
+  --gradient-subtle: linear-gradient(180deg, rgba(245,248,255,0.02), rgba(240,244,255,0.01));
+  --gradient-card: linear-gradient(145deg, rgba(20,24,40,0.06), rgba(20,24,40,0.03));
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 210 18% 96%;
+    --sidebar-primary: 28 100% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 28 100% 42%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 14% 10%;
+    --sidebar-ring: 28 100% 52%;
+  }
+
+  /* Animated full-page bluish/purple gradient overlay for hero sections */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: -1;
+    background: radial-gradient(600px 300px at 18% 70%, hsl(var(--animated-grad-1) / 0.06), transparent 8%), radial-gradient(500px 220px at 45% 30%, hsl(var(--animated-grad-2) / 0.05), transparent 12%), radial-gradient(at 80% 70%, hsl(var(--animated-grad-3) / 0.04), transparent 15%);
+    filter: blur(58px) saturate(110%);
+    animation: ai-bg-move 20s linear infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.95;
+  }
+
+  /* Decorative grid overlay (subtle lines like screenshot) */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  background-image: linear-gradient(rgba(245,248,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,248,255,0.02) 1px, transparent 1px);
+    background-size: 48px 48px, 48px 48px;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.12;
+  }
+
+  @keyframes ai-bg-move {
+    0% { transform: translate3d(0,0,0) scale(1); }
+    50% { transform: translate3d(6%, -4%, 0) scale(1.03); }
+    100% { transform: translate3d(0,0,0) scale(1); }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
